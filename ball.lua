@@ -1,3 +1,4 @@
+require "pads"
 ball = {}
 
 constantMovementX = 100
@@ -25,6 +26,7 @@ function ball.Update(dt)
     ball.velX = ball.velX * constVelocityAugmentX
     ball.velY = ball.velY * constVelocityAugmentY
     constVelocityAugmentY = constVelocityAugmentY * 1.0000004
+    ball.CheckCollition()
 end
 
 function ball.Draw()
@@ -33,14 +35,14 @@ end
 
 function ball.CheckCollition()
 
-    width , heigth = ball.image:getDimensions()
+    ball.width , ball.heigth = ball.image:getDimensions()
 
     if board.canShowSize then
         board.ShowSize()
         board.canShowSize = false;
     end
 
-    if (ball.x + ball.radius > board.width - 100 - width * ball.radius) then
+    if (ball.x + ball.radius > board.width - 100 - ball.width * ball.radius) then
         if(not enteredOnce) then
             ball.velX = -ball.velX
             print("toca el borde derecho")
@@ -54,14 +56,14 @@ function ball.CheckCollition()
         end
     end
 
-    if (ball.y + ball.radius > board.heigth - heigth * ball.radius * 3/2) then
+    if (ball.y + ball.radius > board.heigth - ball.heigth * ball.radius * 3/2) then
         if(not enteredOnce) then
             ball.velY = -ball.velY
             print("toca el borde abajo")
         end
     end
 
-    if (ball.y < - ball.radius * heigth / 2) then
+    if (ball.y < - ball.radius * ball.heigth / 2) then
         if(not enteredOnce) then
             ball.velY = -ball.velY
             print("toca el borde arriba")

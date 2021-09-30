@@ -13,6 +13,7 @@ love.graphics.setColor(0,255,0)
 love.graphics.rectangle("fill", leftPosX,leftPosY, width,height)
 love.graphics.setColor(255,0,0)
 love.graphics.rectangle("fill", rightPosX,rightPosY, width,height)
+love.graphics.reset()
 end
 
 function MovePad(dt)
